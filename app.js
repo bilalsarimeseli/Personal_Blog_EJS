@@ -21,7 +21,12 @@ app.use(express.static('public'));
 let posts = [];
 
 app.get("/posts/:parameter", function(req, res){
-  console.log(req.params.parameter);
+  const userEntry = req.params.parameter;
+  for(var i = 0; i < posts.length; i ++){
+    if (posts[i].title === userEntry ){
+      console.log("Match Found");
+    } 
+  }
 })
 
 app.get("/", function (req, res) {
