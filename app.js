@@ -21,14 +21,17 @@ app.use(express.static('public'));
 
 let posts = [];
 
-app.get("/posts/:parameter", function(req, res){
+app.get("/posts/:parameter", function (req, res) {
   const userEntry = _.lowerCase(req.params.parameter);
-  for(var i = 0; i < posts.length; i ++){
-    if (_.lowerCase(posts[i].title) === userEntry ){
-      console.log("Match Found");
-    } 
+  for (var i = 0; i < posts.length; i++) {
+    if (_.lowerCase(posts[i].title) === userEntry) {
+      res.render("post", {
+        title: posts[i].title,
+        content: posts[i].content
+      });
+    }
   }
-})
+});
 
 app.get("/", function (req, res) {
   res.render("home", {
