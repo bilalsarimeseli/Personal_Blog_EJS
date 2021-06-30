@@ -29,11 +29,13 @@ app.get("/posts/:parameter", function (req, res) {
         title: posts[i].title,
         content: posts[i].content
       });
+
     }
   }
 });
 
 app.get("/", function (req, res) {
+
   res.render("home", {
     homeContent: homeStartingContent,
     posts: posts
@@ -58,7 +60,7 @@ app.get("/compose", function (req, res) {
 app.post("/compose", function (req, res) {
   const postObj = {
     title: req.body.postTitle,
-    content: req.body.postedText
+    content: req.body.postedText.slice(0, 100).concat('...')
   };
   posts.push(postObj);
   res.redirect("/");
