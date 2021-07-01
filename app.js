@@ -27,7 +27,8 @@ app.get("/posts/:parameter", function (req, res) {
     if (_.lowerCase(posts[i].title) === userEntry) {
       res.render("post", {
         title: posts[i].title,
-        content: posts[i].content
+        content: posts[i].content,
+        newcontent: posts[i].newcontent
       });
 
     }
@@ -60,7 +61,8 @@ app.get("/compose", function (req, res) {
 app.post("/compose", function (req, res) {
   const postObj = {
     title: req.body.postTitle,
-    content: req.body.postedText.slice(0, 100).concat('...')
+    content: req.body.postedText,
+    newcontent: req.body.postedText.slice(0, 100).concat("...")
   };
   posts.push(postObj);
   res.redirect("/");
